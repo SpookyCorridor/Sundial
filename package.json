@@ -1,0 +1,29 @@
+{
+  "name": "sundial",
+  "version": "1.0.0",
+  "description": "weather stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpookyCorridor/Sundial.git"
+  },
+  "author": "Dylan Cairns <spookycorridor@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpookyCorridor/Sundial/issues"
+  },
+  "homepage": "https://github.com/SpookyCorridor/Sundial#readme",
+  "devDependencies": {
+    "angular-mocks": "^1.4.9",
+    "jasmine-core": "^2.4.1",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7"
+  },
+  "dependencies": {
+    "angular": "^1.4.9",
+    "angular-resource": "^1.4.9"
+  }
+}
