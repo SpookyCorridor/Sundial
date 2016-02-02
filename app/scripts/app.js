@@ -4,6 +4,8 @@
 * Main module for sundial app
 */
 
+var Sundial = Sundial || {}; 
+
 angular.module('Sundial', 
 	['Sundial.controllers',
 	 'Sundial.config',

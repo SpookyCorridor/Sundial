@@ -22,6 +22,13 @@ config( ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlR
 			controllerAs: 'home'
 		}).
 
+		state('forecast', {
+			url: '/forecast',
+			templateUrl: 'views/tpl/forecast.html',
+			controller: 'ForecastController',
+			controllerAs: 'forecast'
+		}).
+		
 		state('404', {
 			templateUrl: 'views/tpl/404.html'
 		}); 
