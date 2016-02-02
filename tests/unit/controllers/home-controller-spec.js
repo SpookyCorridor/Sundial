@@ -1,23 +1,21 @@
 describe('Home Controller', function() {
 
-	var $rootScope,
-			$scope,
-			$state, 
+	var $state, 
 			$location,
 			home; 
 
 	beforeEach(module('Sundial.controllers')); 
 
-	beforeEach(inject(function(_$controller_, _$rootScope_, _$location_) {
-		$rootScope = _$rootScope_; 
-		$scope = $rootScope.$new();
+	beforeEach(inject(function(_$controller_, _$location_) {
 		$location = _$location_;
-		home = _$controller_('home', { $scope: $scope }); 
+		home = _$controller_('HomeController', { });
+		$location.path('/someWrongUrl') 
 	}));
 
-	describe('it should change paths to forecast on forecast()', function() {
-		home.submit(); 
-		expect($location.href).toBe('/forecast');
+	it('should change path to /forecast on clicking forecast button', function() {
+		expect($location.path()).not.toBe('/forecast');
+		home.goToForecast(); 
+		expect($location.path()).toBe('/forecast');
 	});
 
 });
