@@ -5,6 +5,7 @@
 */
 
 angular.module('Sundial', 
-	['Sundial.config']); 
+	['Sundial.controllers',
+	 'Sundial.config']); 
 
 
