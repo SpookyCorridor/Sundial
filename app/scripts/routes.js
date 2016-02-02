@@ -18,8 +18,8 @@ config( ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlR
 		state('home', {
 			url: '/home',
 			templateUrl: 'views/tpl/home.html',
-			controller: 'testing',
-			controllerAs: 'test'
+			controller: 'HomeController',
+			controllerAs: 'home'
 		}).
 
 		state('404', {
