@@ -3,4 +3,8 @@
 *
 * Main module for sundial app
 */
-angular.module('Sundial', []); 
+
+angular.module('Sundial', 
+	['Sundial.config']); 
+
+
