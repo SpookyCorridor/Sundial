@@ -1,4 +1,4 @@
-describe('forecastService', function() {
+describe('forecastFactory', function() {
 	var Forecast,
 			weatherKey,
 			SundialConfig,
@@ -8,8 +8,8 @@ describe('forecastService', function() {
 	beforeEach(function() {
 		module("Sundial"); 
 
-		inject(function ($location, _forecastService_, _$httpBackend_, _$q_) {
-			Forecast = _forecastService_; 
+		inject(function ($location, _forecastFactory_, _$httpBackend_, _$q_) {
+			Forecast = _forecastFactory_; 
 			$httpBackend = _$httpBackend_;
       $httpBackend.when('JSONP', "http://api.openweathermap.org/data/2.5/forecast/daily?&appid=9799272acfac7a938ca66f9e3b869899&callback=JSON_CALLBACK&cnt=1&q=city").respond([{one: 'two'}]);
       prepareCity = spyOn(Forecast, 'prepareCity').and.returnValue('city');
