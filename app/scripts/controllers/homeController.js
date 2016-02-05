@@ -4,7 +4,7 @@ controller('HomeController', ['$scope', '$location', 'locationService', function
 
 	var vm = this; 
 
-	vm.city = ''; 
+	vm.city = 'Chicago, IL'; 
 
 	this.goToForecast = function() {
 		$location.path('/forecast');

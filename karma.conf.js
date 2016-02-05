@@ -20,7 +20,8 @@ module.exports = function(config) {
     'node_modules/angular-resource/angular-resource.js',
     'node_modules/angular-mocks/angular-mocks.js',
     'app/**/*.js',
-    'tests/unit/**/*.js'
+    'tests/unit/**/*.js',
+    'app/scripts/.env.js'
     ],
 
 
