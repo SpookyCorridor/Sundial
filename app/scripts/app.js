@@ -9,6 +9,7 @@ var Sundial = Sundial || {};
 angular.module('Sundial', 
 	['Sundial.controllers',
 	 'Sundial.config',
-	 'Sundial.services']); 
+	 'Sundial.services',
+	 'Sundial.factories']); 
 
 
