@@ -4,18 +4,75 @@ describe('Forecast Controller', function() {
 			$location,
 			$rootScope,
 			$scope,
-			Forecast; 
+			Forecast,
+			mockForecastFactory;  
 
-	beforeEach(module('Sundial.Controllers')); 
+	beforeEach(function() {
+		mockForecastFactory = {};
 
-	beforeEach(inject(function(_$controller_, _$rootScope_) {
-		$rootScope = _$rootScope_; 
-		$scope = $rootScope.$new();
-
-		Forecast = _$controller_('ForecastController', { $scope : $scope });		
-		
-	}));
+		module('Sundial', function($provide) {
+			$provide.value('forecastFactory', mockForecastFactory); 
+		}); 
 
 
+		inject(function($q) {
+		var city = 'city'; 
+
+		mockForecastFactory.data = [
+			{
+				city: {
+					id: 1, 
+					name: 'city'
+				},
+				list: [
+					{ },
+					{ }
+				]
+			}
+		];
+
+		mockForecastFactory.getForecast = function(city) {
+			var defer = $q.defer(); 
+
+			defer.resolve(this.data); 
+
+			return defer.promise; 
+		};
+
+	});
+}); 
+
+
+beforeEach(inject(function($controller, $rootScope, _forecastFactory_) {
+	$scope = $rootScope.$new();
+	forecastFactory = _forecastFactory_; 
+	Forecast = $controller('ForecastController', 
+		{ $scope : $scope, forecastFactory: forecastFactory });		
+	
+	$scope.$digest(); 
+}));
+
+	
+
+	describe('init', function() {
+ 
+		it('should contain the data', function() {
+			Forecast.setForecast();
+			$scope.$digest();
+			expect(Forecast.current).toEqual([
+			{
+				city: {
+					id: 1, 
+					name: 'city'
+				},
+				list: [
+					{ },
+					{ }
+				]
+			}
+		]);
+		});
+
+	});
 
 });
