@@ -54,9 +54,9 @@ beforeEach(inject(function($controller, $rootScope, _forecastFactory_) {
 
 	
 
-	describe('init', function() {
+	describe('setForecast', function() {
  
-		it('should contain the data', function() {
+		it('should set current to the current forecast data', function() {
 			Forecast.setForecast();
 			$scope.$digest();
 			expect(Forecast.current).toEqual([
