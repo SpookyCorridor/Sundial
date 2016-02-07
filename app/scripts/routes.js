@@ -17,20 +17,20 @@ config( ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlR
 
 		state('home', {
 			url: '/home',
-			templateUrl: 'views/tpl/home.html',
+			templateUrl: 'views/home.html',
 			controller: 'HomeController',
 			controllerAs: 'home'
 		}).
 
 		state('forecast', {
 			url: '/forecast',
-			templateUrl: 'views/tpl/forecast.html',
+			templateUrl: 'views/forecast.html',
 			controller: 'ForecastController',
 			controllerAs: 'forecast'
 		}).
 		
 		state('404', {
-			templateUrl: 'views/tpl/404.html'
+			templateUrl: 'views/404.html'
 		}); 
 
 }]); 
