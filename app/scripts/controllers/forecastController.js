@@ -1,9 +1,7 @@
 Sundial.Controllers.
 
-<<<<<<< HEAD
-controller('ForecastController', ['$scope', '$location', 'forecastService', 'locationService', function($scope, $location, forecastService, locationService) { 
+controller('ForecastController', ['$scope', '$location', 'forecastFactory', 'locationService', function($scope, $location, forecastFactory, locationService) { 
 
-	vm = this; 
-
-	});
+	vm = this;
+	
 }]); 

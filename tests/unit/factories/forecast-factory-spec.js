@@ -3,17 +3,31 @@ describe('forecastFactory', function() {
 			weatherKey,
 			SundialConfig,
 			httpBackend,
-			prepareCity;
+			mockGetForecast, 
+			prepareCity,
+			apiQuery = 'http://api.openweathermap.org/data/2.5/forecast/daily?&appid=123&callback=JSON_CALLBACK&cnt=1&q=city';
 
 	beforeEach(function() {
 		module("Sundial"); 
 
-		inject(function ($location, _forecastFactory_, _$httpBackend_, _$q_) {
+		inject(function ($location, _forecastFactory_, _$httpBackend_, _$q_, _$http_) {
 			Forecast = _forecastFactory_; 
 			$httpBackend = _$httpBackend_;
-      $httpBackend.when('JSONP', "http://api.openweathermap.org/data/2.5/forecast/daily?&appid=9799272acfac7a938ca66f9e3b869899&callback=JSON_CALLBACK&cnt=1&q=city").respond([{one: 'two'}]);
-      prepareCity = spyOn(Forecast, 'prepareCity').and.returnValue('city');
-		});
+			$http = _$http_; 
+
+			prepareCity = spyOn(Forecast, 'prepareCity').and.returnValue('city');
+      mockGetForecast = spyOn(Forecast, 'getForecast').and.callFake(function(){
+      		var preparedCity = Forecast.prepareCity('city');
+      		var params = { params : {
+      				appid: '123',
+           	 	q: 'city',
+           	 	cnt: 1,   
+           	 	callback: 'JSON_CALLBACK'
+           	 }
+      		}
+      		$http.jsonp('http://api.openweathermap.org/data/2.5/forecast/daily?', params);
+			});
+		}); 
 	}); 
 
 	describe('init', function() {
@@ -23,13 +37,24 @@ describe('forecastFactory', function() {
 		});
 
 	describe('getForecast()', function() {	
-		it('should call the prepareCity()', function() {
-			$httpBackend.expectJSONP('http://api.openweathermap.org/data/2.5/forecast/daily?&appid=9799272acfac7a938ca66f9e3b869899&callback=JSON_CALLBACK&cnt=1&q=city'); 
+		beforeEach(function() {
+			$httpBackend.expectJSONP(apiQuery).respond({}); 
 			Forecast.getForecast('city'); 
 			$httpBackend.flush(); 
-			
-			expect(prepareCity).toHaveBeenCalledWith('city'); 
+		});
+
+		afterEach(function() {
+     $httpBackend.verifyNoOutstandingExpectation();
+     $httpBackend.verifyNoOutstandingRequest();
+   });
+
+		it('should recieve a parameter', function() {
+			expect(mockGetForecast).toHaveBeenCalledWith('city'); 
 		});  
+
+		it('should call prepareCity()', function() {
+			expect(prepareCity).toHaveBeenCalledWith('city'); 
+		});
 	});
 
 });
