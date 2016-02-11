@@ -15,9 +15,9 @@ describe('Sundial.routes', function() {
 		$state = _$state_;
 		$rootScope = _$rootScope_; 
 		$templateCache = _$templateCache_; 
-		$templateCache.put('views/tpl/home.html', ''); 
-		$templateCache.put('views/tpl/forecast.html', ''); 
-		$templateCache.put('views/tpl/404.html', '');
+		$templateCache.put('views/home.html', ''); 
+		$templateCache.put('views/forecast.html', ''); 
+		$templateCache.put('views/404.html', '');
 		$location = _$location_; 
 	})); 
 
