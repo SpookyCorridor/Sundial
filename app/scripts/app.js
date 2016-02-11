@@ -10,6 +10,8 @@ angular.module('Sundial',
 	['Sundial.controllers',
 	 'Sundial.config',
 	 'Sundial.services',
-	 'Sundial.factories']); 
+	 'Sundial.factories',
+	 'Sundial.directives',
+	 'Sundial.filters']); 
 
 

@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			{{ weatherDay.dt | date : dateFormat }}
+		</div>
+		<div class="panel-body">
+			Daytime Temp: {{ weatherDay.temp.day | convertKelvin:f }}
+		</div>
+	</div>
+</div>
