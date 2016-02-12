@@ -11,21 +11,20 @@ describe('forecastFactory', function() {
 		module("Sundial"); 
 
 		inject(function ($location, _forecastFactory_, _$httpBackend_, _$q_, _$http_) {
-			Forecast = _forecastFactory_; 
-			$httpBackend = _$httpBackend_;
-			$http = _$http_; 
-
-			prepareCity = spyOn(Forecast, 'prepareCity').and.returnValue('city');
-      mockGetForecast = spyOn(Forecast, 'getForecast').and.callFake(function(){
-      		var preparedCity = Forecast.prepareCity('city');
-      		var params = { params : {
-      				appid: '123',
-           	 	q: 'city',
-           	 	cnt: 1,   
-           	 	callback: 'JSON_CALLBACK'
-           	 }
-      		}
-      		$http.jsonp('http://api.openweathermap.org/data/2.5/forecast/daily?', params);
+			Forecast        = _forecastFactory_;
+			$httpBackend    = _$httpBackend_;
+			$http           = _$http_;
+			prepareCity     = spyOn(Forecast, 'prepareCity').and.returnValue('city');
+			mockGetForecast = spyOn(Forecast, 'getForecast').and.callFake(function(){
+	  		var preparedCity = Forecast.prepareCity('city'); 
+	  		var params       = { params : {
+	  				appid: '123',
+	       	 	q: 'city',
+	       	 	cnt: 1,   
+	       	 	callback: 'JSON_CALLBACK'
+	       	 }
+	  		}; 
+      	$http.jsonp('http://api.openweathermap.org/data/2.5/forecast/daily?', params);
 			});
 		}); 
 	}); 

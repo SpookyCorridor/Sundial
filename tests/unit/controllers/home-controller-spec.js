@@ -6,19 +6,20 @@ describe('Home Controller', function() {
 			$scope,
 			home; 
 
-	beforeEach(module('Sundial')); 
+	beforeEach(function() {
+		module('Sundial');  
 
-	beforeEach(inject(function(_$controller_, _$rootScope_, _$location_, _locationService_) {
+		inject(function(_$controller_, _$rootScope_, _$location_, _locationService_) {
 		$rootScope = _$rootScope_; 
 		$scope = $rootScope.$new(); 
 		$location = _$location_;
 		$location.path('/badPath');
 		locationService = _locationService_; 
-
-
+		
 		home = _$controller_('HomeController', { $scope : $scope });		
 		
-	}));
+		});
+	}); 
 
 	it('should change path to /forecast on clicking forecast button', function() {
 		expect($location.path()).not.toBe('/forecast');

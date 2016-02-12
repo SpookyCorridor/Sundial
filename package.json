@@ -2,7 +2,7 @@
   "name": "sundial",
   "version": "1.0.0",
   "description": "weather stuff",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,10 +23,11 @@
     "karma-jasmine": "^0.3.7"
   },
   "dependencies": {
-    "angular": "^1.4.9",
-    "angular-resource": "^1.4.9",
     "body-parser": "^1.15.0",
+    "config": "^1.19.0",
     "express": "^4.13.4",
-    "method-override": "^2.3.5"
+    "method-override": "^2.3.5",
+    "morgan": "^1.6.1",
+    "request": "^2.69.0"
   }
 }

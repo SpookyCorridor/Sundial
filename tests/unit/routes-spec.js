@@ -9,17 +9,20 @@ describe('Sundial.routes', function() {
 		$rootScope.$digest();
 	}
 
-	beforeEach(module('Sundial')); 
+	beforeEach(function(){
+		module('Sundial'); 
 
-	beforeEach(inject(function(_$state_, _$templateCache_, _$rootScope_, _$location_) {
-		$state = _$state_;
-		$rootScope = _$rootScope_; 
-		$templateCache = _$templateCache_; 
-		$templateCache.put('views/home.html', ''); 
-		$templateCache.put('views/forecast.html', ''); 
-		$templateCache.put('views/404.html', '');
-		$location = _$location_; 
-	})); 
+		inject(function(_$state_, _$templateCache_, _$rootScope_, _$location_) {
+			$state         = _$state_;
+			$rootScope     = _$rootScope_;
+			$location      = _$location_;
+			$templateCache = _$templateCache_;
+
+			$templateCache.put('views/home.html', ''); 
+			$templateCache.put('views/forecast.html', ''); 
+			$templateCache.put('views/404.html', '');
+		}); 
+	}); 
 
 	describe('home state', function() {
 		it('should go to home state on blank', function() {

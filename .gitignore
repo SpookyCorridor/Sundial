@@ -33,3 +33,10 @@ node_modules
 .node_repl_history
 
 .env*
+
+# config 
+default.json 
+
+# bower 
+bower_components
+public/libs

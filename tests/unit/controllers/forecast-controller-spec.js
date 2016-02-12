@@ -16,43 +16,41 @@ describe('Forecast Controller', function() {
 
 
 		inject(function($q) {
-		var city = 'city'; 
+			var city = 'city'; 
 
-		mockForecastFactory.data = [
-			{
-				city: {
-					id: 1, 
-					name: 'city'
-				},
-				list: [
-					{ },
-					{ }
-				]
-			}
-		];
+			mockForecastFactory.data = [
+				{
+					city: {
+						id: 1, 
+						name: 'city'
+					},
+					list: [
+						{ },
+						{ }
+					]
+				}
+			];
 
-		mockForecastFactory.getForecast = function(city) {
-			var defer = $q.defer(); 
+			mockForecastFactory.getForecast = function(city) {
+				var defer = $q.defer(); 
 
-			defer.resolve(this.data); 
+				defer.resolve(this.data); 
 
-			return defer.promise; 
-		};
+				return defer.promise; 
+			};
 
-	});
-}); 
+		});
 
+		inject(function($controller, $rootScope, _forecastFactory_) {
+			$scope = $rootScope.$new();
+			forecastFactory = _forecastFactory_; 
+			Forecast = $controller('ForecastController', 
+				{ $scope : $scope, forecastFactory: forecastFactory });		
+			
+			$scope.$digest(); 
+		});
 
-beforeEach(inject(function($controller, $rootScope, _forecastFactory_) {
-	$scope = $rootScope.$new();
-	forecastFactory = _forecastFactory_; 
-	Forecast = $controller('ForecastController', 
-		{ $scope : $scope, forecastFactory: forecastFactory });		
-	
-	$scope.$digest(); 
-}));
-
-	
+	}); 
 
 	describe('setForecast', function() {
  

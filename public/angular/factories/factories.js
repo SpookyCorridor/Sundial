@@ -15,23 +15,22 @@ factory('forecastFactory', ['$http', '$q', 'SundialConfig', function($http, $q, 
 	Forecast.getForecast = function(city) {
   	var preparedCity = Forecast.prepareCity(city);
 
-    return $http.jsonp('http://api.openweathermap.org/data/2.5/forecast/daily?', {
-        params: {
-            appid: weatherKey,
-            q: preparedCity,
-            cnt: Forecast.dayCnt,   
-            callback: 'JSON_CALLBACK'
-        }
-    }).then(function(res) {
+  	var req = {
+  		method: 'POST', 
+  		url: 'http://localhost:8080/forecast',
+  		data: {
+  			q: preparedCity,
+        cnt: Forecast.dayCnt
+  		}
+  	}; 
+
+    return $http(req)
+    	.then(function(res, err) {
+    		if (err) throw err; 
   			console.log("success");
+  			console.log(res.data); 
   			return res.data;
-
-  		})
-
-	    .catch(function(err) {
-	      console.log('error')
-	      return []; // or {} depending upon required data
-	    }); 
+  		}); 
 
 	} // getForecast 
  
