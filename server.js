@@ -23,6 +23,4 @@ app.route('/')
 	
 app.use('/forecast', forecast); 
 
-app.listen(8080, function(){
-	console.log('listening on port %d', 8080)
-}); 
+module.exports = app; 
