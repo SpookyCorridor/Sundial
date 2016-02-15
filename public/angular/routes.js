@@ -1,4 +1,4 @@
-angular.module('Sundial.config', ['ui.router']).
+angular.module('Sundial.routes', ['ui.router']).
 
 config( ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 

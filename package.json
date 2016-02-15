@@ -18,9 +18,12 @@
   "homepage": "https://github.com/SpookyCorridor/Sundial#readme",
   "devDependencies": {
     "angular-mocks": "^1.4.9",
+    "chai": "^3.5.0",
     "jasmine-core": "^2.4.1",
     "karma-chrome-launcher": "^0.2.2",
-    "karma-jasmine": "^0.3.7"
+    "karma-jasmine": "^0.3.7",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
   },
   "dependencies": {
     "body-parser": "^1.15.0",

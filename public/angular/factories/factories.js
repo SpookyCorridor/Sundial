@@ -1,9 +1,8 @@
 angular.module('Sundial.factories', []).
 
-factory('forecastFactory', ['$http', '$q', 'SundialConfig', function($http, $q, SundialConfig){
+factory('forecastFactory', ['$http', '$q', function($http, $q, SundialConfig){
 
 	var Forecast = {}; 
-	var weatherKey = SundialConfig.openWeatherKey;
 
 	Forecast.dayCnt = 1; 
 	

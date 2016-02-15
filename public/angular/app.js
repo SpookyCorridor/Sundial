@@ -8,7 +8,7 @@ var Sundial = Sundial || {};
 
 angular.module('Sundial', 
 	['Sundial.controllers',
-	 'Sundial.config',
+	 'Sundial.routes', 
 	 'Sundial.services',
 	 'Sundial.factories',
 	 'Sundial.directives',
