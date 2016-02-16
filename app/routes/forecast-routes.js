@@ -4,36 +4,11 @@ var express 		= require('express'),
 		urlencode   = bodyParser.urlencoded({ extended: false }),
 		router      = express.Router(),
 		config      = require('config'),
-		request     = require('request');
+		request     = require('request'),
+		forecast   = require('../controllers/forecast')
 
 router.route('/')
-	.post(function(req,res){ 
-		var uri = 'http://api.openweathermap.org/data/2.5/forecast/daily?',
-		appid   = config.get('Api.openWeatherMap.appid'),
-		q       = req.body.q, //city
-		cnt     = req.body.cnt; //# days 
-
-		sendForecast = function (body) {
-			return res.send(body); 
-		}
-	
-		request(
-			{
-				method: 'GET',
-				uri: uri, 
-				qs: 
-					{ appid: appid,
-						q: q,
-						cnt: cnt
-					}
-				
-			}, function(err,res,body) {
-				if (err) throw err;
-				return sendForecast(body); 
-			}
-		); 
-
-	}); 
+	.post(forecast.getForecast); 
 
 module.exports = router; 
 
