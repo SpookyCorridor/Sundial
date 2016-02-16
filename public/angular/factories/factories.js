@@ -25,9 +25,7 @@ factory('forecastFactory', ['$http', '$q', function($http, $q, SundialConfig){
 
     return $http(req)
     	.then(function(res, err) {
-    		if (err) throw err; 
-  			console.log("success");
-  			console.log(res.data); 
+    		if (err) throw err;
   			return res.data;
   		}); 
 

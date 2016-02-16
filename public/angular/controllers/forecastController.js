@@ -9,9 +9,7 @@ controller('ForecastController', ['$scope', '$location', 'forecastFactory', 'loc
 		vm.current = vm.setForecast(vm.city);
 	}; 
 	
-	//get forecast
-
-	//set forecast 
+	
 	vm.setForecast = function(city) {
 		forecastFactory.getForecast(vm.city).then(function(res) {
 			vm.current = res; 
