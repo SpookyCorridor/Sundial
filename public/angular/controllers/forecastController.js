@@ -1,6 +1,6 @@
-Sundial.Controllers.
+angular.module('Sundial.controllers')
 
-controller('ForecastController', ['$scope', '$location', 'forecastFactory', 'locationService', function($scope, $location, forecastFactory, locationService) { 
+.controller('ForecastController', ['$scope', '$location', 'forecastFactory', 'locationService', function($scope, $location, forecastFactory, locationService) { 
 
 	vm = this;
 
