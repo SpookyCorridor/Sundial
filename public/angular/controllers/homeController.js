@@ -5,6 +5,7 @@ angular.module('Sundial.controllers')
 	var vm = this; 
 
 	vm.city = 'Chicago, IL'; 
+	vm.geolocation = []; 
 
 	this.goToForecast = function() {
 		$location.path('/forecast');
@@ -13,7 +14,17 @@ angular.module('Sundial.controllers')
 	this.captureLocation = function() {
 		geolocationFactory.getGeolocation()
 			.then(function(geo){
-				console.log(geo); 
+				vm.geolocation = [geo.coords.latitude, geo.coords.longitude];  
+			})
+			.catch(function(err){
+				
+				if (err.constructor.name === 'PositionError') {
+					console.log('location blocked'); 
+					// TODO: add popup to notify user later
+				} else {
+					throw err; 
+				}
+
 			})
 	}
 

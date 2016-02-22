@@ -1,27 +1,47 @@
 describe('Home Controller', function() {
 
-	var $state, 
-			$location,
+	var	$location,
 			$rootScope,
 			$scope,
-			home; 
+			home,
+			locationService, 
+			mockGeolocationFactory; 
 
-	beforeEach(function() {
-		module('Sundial');  
+	beforeEach(function() { 
 
-		inject(function(_$controller_, _$rootScope_, _$location_, _locationService_) {
-		$rootScope = _$rootScope_; 
-		$scope = $rootScope.$new(); 
-		$location = _$location_;
-		$location.path('/badPath');
-		locationService = _locationService_; 
-		
-		home = _$controller_('HomeController', { $scope : $scope });		
+		mockGeolocationFactory = {}; 
+
+		module('Sundial', function($provide) {
+			$provide.value('geolocationFactory', mockGeolocationFactory);
+		});  
+
+		inject(function($q){
+			geo = {coords: {
+				latitude: 1,
+				longitude: 1
+			}}; 
+
+			mockGeolocationFactory.getGeolocation = function(){
+				var defer = $q.defer(); 
+				defer.resolve(geo); 
+				return defer.promise; 
+			}
+		})
+
+		inject(function(_$controller_, _$rootScope_, _$location_, _locationService_, _geolocationFactory_) {
+			$rootScope      = _$rootScope_;
+			$scope          = $rootScope.$new();
+			$location       = _$location_;
+			locationService = _locationService_;
+			geolocationFactory = _geolocationFactory_; 
+			
+			home 	= _$controller_('HomeController', { $scope : $scope, geolocationFactory: geolocationFactory });
 		
 		});
 	}); 
 
 	it('should change path to /forecast on clicking forecast button', function() {
+		$location.path('/badPath');
 		expect($location.path()).not.toBe('/forecast');
 		home.goToForecast(); 
 		expect($location.path()).toBe('/forecast');
@@ -32,9 +52,13 @@ describe('Home Controller', function() {
 		var citySpy = spyOn(locationService, 'setCity'); 
 		home.city = 'Portland'; 
 		$scope.$digest();  
-
 		expect(citySpy).toHaveBeenCalledWith('Portland'); 
-		
+	});
+
+	it('should try to grab the user location immediately', function() {
+		$location.path('home')
+		$scope.$digest();  
+		expect(home.geolocation).toEqual([1, 1]); 
 	});
 
 });

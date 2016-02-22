@@ -18,6 +18,7 @@ angular.module('Sundial.factories')
 					deferred.reject(err); 
 				}); 
 		}
+		
 		return deferred.promise; 
 
 	}
