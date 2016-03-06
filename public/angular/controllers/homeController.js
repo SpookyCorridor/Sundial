@@ -8,14 +8,14 @@ angular.module('Sundial.controllers')
 	vm.geolocation = []; 
 
 	function init () {
-		this.captureLocation(); 
+		vm.captureLocation(); 
 	}
 
-	this.goToForecast = function() {
+	vm.goToForecast = function() {
 		$location.path('/forecast');
 	}
 
-	this.captureLocation = function() {
+	vm.captureLocation = function() {
 		geolocationFactory.getGeolocation()
 			.then(function(geo){
 				vm.geolocation = [geo.coords.latitude, geo.coords.longitude];  
