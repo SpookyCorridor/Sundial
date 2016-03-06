@@ -3,17 +3,26 @@ angular.module('Sundial.controllers')
 .controller('ForecastController', ['$scope', '$location', 'forecastFactory', 'locationService', function($scope, $location, forecastFactory, locationService) { 
 
 	vm = this;
+	vm.current = null; 
 
 	var _init = function() {
+		vm.mode = locationService.getMode(); 
 		vm.city = locationService.getCity();  	
-		vm.current = vm.setForecast(vm.city);
+		vm.geolocation = locationService.getGeolocation(); 
+		if (!vm.city && !vm.geolocation) {
+			vm.city = 'Chicago, IL'; 
+			vm.mode = 'city'; 
+		}
+		vm.setForecast();
 	}; 
 	
 	
-	vm.setForecast = function(city) {
-		forecastFactory.getForecast(vm.city).then(function(res) {
+	vm.setForecast = function() {
+		var method; 
+		method = vm.mode === 'city' ? vm.city : vm.mode; 
+		forecastFactory.getForecast(method).then(function(res) {
 			vm.current = res; 
-		}); 
+		});
 	} 
 
 	_init(); 
