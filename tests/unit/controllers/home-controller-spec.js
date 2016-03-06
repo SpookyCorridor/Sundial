@@ -40,18 +40,34 @@ describe('Home Controller', function() {
 		});
 	}); 
 
-	it('should change path to /forecast on clicking forecast button', function() {
-		$location.path('/badPath');
-		expect($location.path()).not.toBe('/forecast');
-		home.goToForecast(); 
-		expect($location.path()).toBe('/forecast');
+	describe('init', function(){
+
+		it('should try to grab the user location immediately', function() {
+			$location.path('home')
+			$scope.$digest();  
+			expect(home.geolocation).toEqual([1, 1]); 
+		});
+
 	});
 
-	it('should try to grab the user location immediately', function() {
-		$location.path('home')
-		$scope.$digest();  
-		expect(home.geolocation).toEqual([1, 1]); 
-	});
+	describe('path', function() {
+
+		beforeEach(function(){
+			$location.path('/badPath');
+		}); 
+
+		it('should change to forecast on clicking forecast button', function() {			
+			expect($location.path()).not.toBe('/forecast');
+			home.goToForecast(); 
+			expect($location.path()).toBe('/forecast');
+		});
+
+		it('should change path to forecast on successful geolocation pull', function(){
+			$scope.$digest(); 
+			expect($location.path()).toBe('/forecast'); 
+		});
+
+	}); 
 
 	describe('watchers', function(){
 

@@ -48,6 +48,6 @@ describe('locationServices', function() {
 			expect(service.geolocation).toEqual([1,2]); 
 		});
 
-	})
+	}); 
 
 });
