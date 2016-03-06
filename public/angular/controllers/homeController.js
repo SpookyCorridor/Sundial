@@ -7,6 +7,10 @@ angular.module('Sundial.controllers')
 	vm.city = 'Chicago, IL'; 
 	vm.geolocation = []; 
 
+	function init () {
+		this.captureLocation(); 
+	}
+
 	this.goToForecast = function() {
 		$location.path('/forecast');
 	}
@@ -34,6 +38,6 @@ angular.module('Sundial.controllers')
 		locationService.setCity(cur);
 	});  
 
-	this.captureLocation(); 
+	init(); 
 
 }]); 

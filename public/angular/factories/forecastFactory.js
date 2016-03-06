@@ -1,5 +1,5 @@
 angular.module('Sundial.factories')
-.factory('forecastFactory', ['$http', '$q', function($http, $q, SundialConfig){
+.factory('forecastFactory', ['$http', '$q', function($http, $q){
 
 	var Forecast = {}; 
 
