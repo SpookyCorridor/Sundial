@@ -8,9 +8,10 @@ describe('locationServices', function() {
 		inject(function (_locationService_) {
 			service = _locationService_; 
 		})	
+
 	});
 
-	describe('setCity()', function() { 
+	describe('Setting a city', function() { 
 
 		it('should set the city if it is a string', function() {
 			service.setCity('New York, NY');
@@ -21,10 +22,11 @@ describe('locationServices', function() {
 			service.setCity(1); 
 			expect(service.city).toBe('Chicago, IL'); 
 		});
+
 	});
 
 
-	describe('getCity()', function() {
+	describe('Getting a city', function() {
 
 		it('should return the correct city', function() {
 			service.setCity('Tokyo, Japan');
@@ -32,5 +34,20 @@ describe('locationServices', function() {
 		});
 
 	});
+
+	describe('Setting geolocation', function(){
+
+		it('should invoke geolocation function with a param', function() {
+			geoSpy = spyOn(service, 'setGeolocation');
+			service.setGeolocation([1,2]);
+			expect(geoSpy).toHaveBeenCalledWith([1,2]); 
+		});
+
+		it('should set the geolocation correctly', function() {
+			service.setGeolocation([1,2]); 
+			expect(service.geolocation).toEqual([1,2]); 
+		});
+
+	})
 
 });

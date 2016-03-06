@@ -6,6 +6,8 @@ service('locationService', function() {
 
 	this.city = 'Chicago, IL'; 
 
+	this.geolocation = []; 
+
 	this.setCity = function(city) {
 		typeof city === 'string' ? self.city = city : self.city = 'Chicago, IL'; 
 	}
@@ -13,5 +15,10 @@ service('locationService', function() {
 	this.getCity = function() {
 		return self.city; 
 	}
+
+	this.setGeolocation = function(geo) {
+		self.geolocation = geo; 
+	}
+
 }); 
 

@@ -47,18 +47,27 @@ describe('Home Controller', function() {
 		expect($location.path()).toBe('/forecast');
 	});
 
-	it('should call location.setCity() when the city model changes', function() {
-
-		var citySpy = spyOn(locationService, 'setCity'); 
-		home.city = 'Portland'; 
-		$scope.$digest();  
-		expect(citySpy).toHaveBeenCalledWith('Portland'); 
-	});
-
 	it('should try to grab the user location immediately', function() {
 		$location.path('home')
 		$scope.$digest();  
 		expect(home.geolocation).toEqual([1, 1]); 
+	});
+
+	describe('watchers', function(){
+
+		it('should call locationService when city is changed', function() {
+
+			var citySpy = spyOn(locationService, 'setCity'); 
+			home.city = 'Portland'; 
+			$scope.$digest();  
+			expect(citySpy).toHaveBeenCalledWith('Portland'); 
+		});
+
+		it('should call locationService when geolocation is changed', function() {
+			var geoSpy = spyOn(locationService, 'setGeolocation'); 
+			$scope.$digest(); 
+			expect(geoSpy).toHaveBeenCalledWith([1,1]); 			
+		});
 	});
 
 });

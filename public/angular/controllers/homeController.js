@@ -19,6 +19,7 @@ angular.module('Sundial.controllers')
 		geolocationFactory.getGeolocation()
 			.then(function(geo){
 				vm.geolocation = [geo.coords.latitude, geo.coords.longitude];  
+				$location.path('/forecast'); 
 			})
 			.catch(function(err){
 				
@@ -36,6 +37,12 @@ angular.module('Sundial.controllers')
 		return vm.city;
 	}, function(cur, orig) {
 		locationService.setCity(cur);
+	});  
+
+	$scope.$watch(function() {
+		return vm.geolocation;
+	}, function(cur, orig) {
+		locationService.setGeolocation(cur);
 	});  
 
 	init(); 
