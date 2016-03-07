@@ -20,9 +20,13 @@
     "angular-mocks": "^1.4.9",
     "chai": "^3.5.0",
     "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
     "karma-chrome-launcher": "^0.2.2",
+    "karma-coverage": "^0.5.4",
     "karma-jasmine": "^0.3.7",
+    "karma-phantomjs-launcher": "^1.0.0",
     "mocha": "^2.4.5",
+    "phantomjs-prebuilt": "^2.1.4",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "supertest": "^1.2.0"
